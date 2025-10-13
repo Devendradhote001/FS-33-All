@@ -29,6 +29,12 @@ const Homelayout = () => {
         >
           Carts
         </NavLink>
+        <NavLink
+          className="p-2 border-b border-gray-400 cursor-pointer"
+          to="/home/messages"
+        >
+          Messages
+        </NavLink>
       </aside>
       <div className="w-[80%] h-full p-5">
         <Outlet />

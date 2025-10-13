@@ -9,6 +9,8 @@ import Product from "../pages/Product";
 import Cart from "../pages/Cart";
 import { getProducts } from "../apis/ProductApis";
 import ProductDetail from "../pages/ProductDetail";
+import Message from "../pages/Message";
+import ChatLayout from "../layout/ChatLayout";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -16,7 +18,7 @@ const AppRouter = () => {
       path: "/",
       element: <AuthLayout />,
     },
-    {
+    { 
       path: "/home",
       element: <Homelayout />,
       children: [
@@ -40,6 +42,16 @@ const AppRouter = () => {
         {
           path: "product/details/:id",
           element: <ProductDetail />,
+        },
+        {
+          path: "messages",
+          element: <ChatLayout />,
+          children: [
+            {
+              path: ":firstname/:lastname",
+              element: <Message />,
+            },
+          ],
         },
       ],
     },
