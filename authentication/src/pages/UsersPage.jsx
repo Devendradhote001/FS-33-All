@@ -1,10 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getUsersData } from "../apis/userApi";
 import { fetchUsersDataHook } from "../hooks/usersHook";
+import { getUsersData } from "../apis/userApi";
+import { useQuery } from "@tanstack/react-query";
 
 const UsersPage = () => {
   let { data, isPending, error } = fetchUsersDataHook();
+
+  console.log(data);
+
+  if (isPending) return <h1>Loading...</h1>;
 
   return (
     <div>

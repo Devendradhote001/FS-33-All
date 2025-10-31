@@ -11,9 +11,7 @@ const Login = ({ setToggle }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    let { fullName, password, username } = JSON.parse(
-      localStorage.getItem("user")
-    );
+    let { password, username } = JSON.parse(localStorage.getItem("user"));
 
     if (username === data.username && password === data.password) {
       console.log("me hu yaha");
