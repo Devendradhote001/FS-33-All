@@ -1,23 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setError } from "../features/errorSlice";
+import { removeError, setError } from "../features/errorSlice";
 import { toast } from "react-toastify";
+import { removeResponse } from "../features/responseSlice";
 
 const ErrorHandler = ({ error }) => {
   const dispatch = useDispatch();
-
   const { message } = useSelector((state) => state.error);
+  const success = useSelector((state) => state.response.message);
 
-  if (error) {
-    dispatch(setError(error));
-    toast.error(message);
-  }
+  useEffect(() => {
+    if (message) {
+      toast.error(message);
+      dispatch(removeError());
+    }
+    if (success) {
+      toast.success(success);
+      dispatch(removeResponse());
+    }
+  }, [message, success]);
 
-  return (
-    <div>
-      <h1>{message}</h1>
-    </div>
-  );
+  return null;
 };
 
 export default ErrorHandler;

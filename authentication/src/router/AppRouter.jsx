@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import ProtectedRoute from "../components/ProtectedRoute";
 import UsersPage from "../pages/UsersPage";
 import ProductPage from "../pages/ProductPage";
+import CartPage from "../pages/CartPage";
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const AppRouter = () => {
             {
               path: "products",
               element: <ProductPage />,
+            },
+            {
+              path: "cart",
+              element: <CartPage />,
             },
           ],
         },

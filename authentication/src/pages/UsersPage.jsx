@@ -1,7 +1,5 @@
 import React from "react";
 import { fetchUsersDataHook } from "../hooks/usersHook";
-import { getUsersData } from "../apis/userApi";
-import { useQuery } from "@tanstack/react-query";
 
 const UsersPage = () => {
   let { data, isPending, error } = fetchUsersDataHook();

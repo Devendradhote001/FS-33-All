@@ -45,6 +45,15 @@ const HomeLayout = () => {
             Products
           </NavLink>
 
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-black" : "text-gray-500"
+            }
+            to="/home/cart"
+          >
+            Cart
+          </NavLink>
+
           <button className="text-xl cursor-pointer" onClick={handleLogout}>
             Logout
           </button>
