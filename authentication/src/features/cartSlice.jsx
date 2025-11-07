@@ -20,7 +20,21 @@ const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
-      state.cartItems = [];
+      let product = action.payload;
+
+      let exists = state.cartItems.find((elem) => elem.id === product.id);
+
+      if (exists) {
+        if (exists.quantity === 1) {
+          let updatedArr = state.cartItems.filter(
+            (val) => val.id !== product.id
+          );
+
+          state.cartItems = updatedArr;
+        } else {
+          exists.quantity -= 1;
+        }
+      }
     },
   },
 });

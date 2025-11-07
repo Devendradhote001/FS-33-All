@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../features/cartSlice";
+import { addToCart, removeFromCart } from "../features/cartSlice";
 import { toast } from "react-toastify";
 // import { addToCart, removeFromCart } from "../features/CartSlice";
 
@@ -15,7 +15,9 @@ export const ProductCard = ({ product }) => {
     toast.success("item added to cart");
   };
 
-  const handleRemove = () => {};
+  const handleRemove = (data) => {
+    dispatch(removeFromCart(data));
+  };
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-4 flex flex-col items-center text-center transform transition hover:-translate-y-1 hover:shadow-2xl">
@@ -45,7 +47,10 @@ export const ProductCard = ({ product }) => {
           </button>
         ) : (
           <div className="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full">
-            <button className="text-indigo-600 font-bold text-lg px-2 hover:opacity-70">
+            <button
+              onClick={() => handleRemove(product)}
+              className="text-indigo-600 font-bold text-lg px-2 hover:opacity-70"
+            >
               −
             </button>
             <span className="font-semibold text-gray-700">
