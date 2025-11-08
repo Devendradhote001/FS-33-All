@@ -1,7 +1,12 @@
 import React from "react";
 import { Play } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { playSong } from "../features/musicSlice";
+import { Pause } from "lucide-react";
 
 const MusicListCard = ({ elem }) => {
+  const { currentMusic, isPlaying } = useSelector((state) => state.music);
+  const dispatch = useDispatch();
   return (
     <div className="w-full p-4 flex items-center justify-between border border-gray-200 rounded-xl cursor-pointer shadow-md">
       <div className="flex items-center gap-15">
@@ -14,8 +19,11 @@ const MusicListCard = ({ elem }) => {
         </div>
         <div className="font-bold text-2xl">{elem.name}</div>
       </div>
-      <div className="cursor-pointer w-15 h-15 flex items-center justify-center bg-white shadow-md border border-gray-200 rounded-full">
-        <Play />
+      <div
+        onClick={() => dispatch(playSong(elem))}
+        className="cursor-pointer w-15 h-15 flex items-center justify-center bg-white shadow-md border border-gray-200 rounded-full"
+      >
+        {currentMusic?.id === elem.id && isPlaying ? <Pause /> : <Play />}
       </div>
     </div>
   );
